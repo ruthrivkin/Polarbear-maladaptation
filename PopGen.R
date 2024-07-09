@@ -1,4 +1,4 @@
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
 library(ggplot2)
 ng <- theme(aspect.ratio=0.7,panel.background = element_blank(), 
             panel.grid.major = element_blank(), 
@@ -226,10 +226,6 @@ meanhet.tran
 
 
 #Calcuclate nucleotide diversity
-
-library(radiator)
-library(tidyr)
-library(readr)
 
 #Make strata file with ind id and subset info (POP_ID and INDIVIDUALS)
 radvcf <- read_vcf(data = "../Subset/Subset.RAD.vcf", strata = "../GFAllEnvironments/strata.filtered.tsv")

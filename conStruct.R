@@ -1,7 +1,7 @@
-#Make datafile
+#Make data file
 library(LEA)
 library(dartR)
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/subset/")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/subset/")
 
 infile <- "Subset.ld.hwe.raw"
 myData <- read.PLINK(infile)
@@ -244,7 +244,7 @@ plot.layer.covariances(spk7_db,spk7_cr[[1]], layer.colors = myCol)
 
 
 
-#Check  phi (aka shared drift)in layers. If small, relatedness likely low
+#Check  phi (aka shared drift) in layers. If small, relatedness likely low
 
 spk7_cr$chain_1$MAP$layer.params$layer_1$phi #5.663914e-05
 spk7_cr$chain_1$MAP$layer.params$layer_2$phi #7.057728e-05

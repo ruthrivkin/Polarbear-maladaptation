@@ -1,4 +1,4 @@
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/SourceFiles/")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/SourceFiles/")
 
 #Prune snps in LD, this is a two part process
 #1) Identify snps, this makes a file with snps that are out of ld to exclude (.prune.out)
@@ -16,8 +16,8 @@ system("~/plink/plink --ped forgf.ped --map forgf.map --out Subset.ld.hwe --miss
 
 #Calc genetic diversity and differentiation for RAD and transcriptomic SNPs
 #Tanscriptomic SNP IDs determined from orignal map/ped files (eg: transcriptomic snps all start with scaffold_XX)
-system("~/plink/plink --ped Subset.ld.hwe.ped --map Subset.ld.hwe.map --out Subset.trans --allow-extra-chr --missing --het --recode vcf --fst --extract TranscriptomeSNPS.txt --keep Subset_IDs.txt --within Within_Subset_IDs.txt")
+system("~/plink/plink --ped Subset.ld.hwe.ped --map Subset.ld.hwe.map --out Subset.trans --allow-extra-chr --missing --het --recode vcf --fst --extract TranscriptomeSNPS.txt --keep Subset_IDs.txt")
 
-system("~/plink/plink --ped Subset.ld.hwe.ped --map Subset.ld.hwe.map --out Subset.rad --allow-extra-chr --missing --het --recode vcf --fst --exclude TranscriptomeSNPS.txt --keep Subset_IDs.txt --within Within_Subset_IDs.txt")
+system("~/plink/plink --ped Subset.ld.hwe.ped --map Subset.ld.hwe.map --out Subset.RAD --allow-extra-chr --missing --het --recode vcf --fst --exclude TranscriptomeSNPS.txt --keep Subset_IDs.txt")
 
 

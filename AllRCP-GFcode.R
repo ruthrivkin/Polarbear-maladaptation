@@ -1,5 +1,5 @@
 # Gradient Forest analyses on whale data!
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/GFAllEnvironments//")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/GFAllEnvironments/")
 # Lots of help for gradient forest analyses from pgugger's github (https://github.com/pgugger/LandscapeGenomics/blob/master/2019/Exercise4.md)
 
 # For converting vcf to gradient forest file I used beginning of tutorial here (came across this one before the one above, but from same person: https://github.com/pgugger/LandscapeGenomics/blob/master/2018_China/Exercise3.md)
@@ -7,7 +7,6 @@ setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Mode
 
 #Create compatible file with rows with ID and columns with snps, no na values
 library(adegenet)
-library(dplyr)
 library(tidyverse)
 library(LEA)
 
@@ -65,12 +64,10 @@ write.table(gf.snp, "snps.ld.gradientforest.forR")
 
 # load libraries
 library(gradientForest)
-library(dplyr)
 library(vegan)
 
 # for climate data stuff
 library(raster)
-library(tidyverse)
 library(sdmpredictors)
 library(sp)
 library(rgdal)
@@ -543,7 +540,6 @@ names(offset.data.85) <- "offset.rcp85"
 
 offset2 <- cbind(pres.clim.points, offset.data.26, offset.data.45, offset.data.60, offset.data.85)
 
-na.check = map_int(offset1, ~sum(is.na(.)))
 
 #save dataset
 write.csv(offset2, "2024.04.16.GF.offset.all.rcp.csv")

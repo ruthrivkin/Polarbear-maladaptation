@@ -1,23 +1,7 @@
-library(lme4)
-library(car)
-library(dplyr)
 library(tidyverse)
-library(getopt)
-library(adegenet)
 library(ggplot2)
-library(dartR)
-library(hierfstat)
-library(LEA)
-library(poppr)
-library(maps)
-library(sp)
-library(rworldmap)
-library(mmod)
-library(rnaturalearth)
-library(plyr)
-library(sf)
 
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
 
 
 myCol <- c("brown","purple","green","orange","red","blue", "pink", "yellow", "darkgreen", "darkblue", "black", "darkgray", "lightgrey")
@@ -35,6 +19,7 @@ ng <- theme(aspect.ratio=0.7,panel.background = element_blank(),
             axis.text.y=element_text(size=10))
 
 #import files
+library(dartR)
 infile <- "Subset.ld.hwe.raw"
 myData <- read.PLINK(infile)
 myData.nona <- gl.impute(myData, method = "HW")
@@ -87,6 +72,7 @@ map.outline = getMap(resolution = "high")
 
 # Crop to boundary and convert to dataframe
 library(raster)
+library(sf)
 map.outline = crop(map.outline, y = boundary) %>% fortify()
 
 # Plot basemap
@@ -106,6 +92,7 @@ localsmap
 
 library(spdep)
 library(adespatial)
+library(adegenet)
 
 
 # Test spatial structure

@@ -5,7 +5,7 @@ library(raster)
 library(sp)
 library(dismo)
 
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Environment/")
+setwd("~/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Environment/")
 
 #Export a csv file containing marine variables of interest
 # List marine data sets
@@ -155,9 +155,6 @@ ggplot() +
 #TEMPERATURE
 # loads the packages used in this guide
 library(ncdf4)
-library(raster)
-library(ggplot2)
-
 
 #Download StableClim Dataset (https://adelaide.figshare.com/articles/dataset/StableClim/12197976?file=24142217)
 tsannual <- brick("StableClim_AnnMean_rcp85_ts.nc") #251 layers corresponding to 1850-2100 for rcp85 as a test

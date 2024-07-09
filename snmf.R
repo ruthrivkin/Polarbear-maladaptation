@@ -1,25 +1,12 @@
-library(adegenet)
-library(poppr)
-library(LEA)
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
+
 library(reshape2)
-library(dplyr)
 library(ggplot2)
-library(rworldmap)
-library(rworldxtra)
-library(ggsn)
-library(sf)
-library(raster)
-library(rgeos)
-library(maps)
-library(maptools)
-library(grid)
-library(miscTools)
-library(stringr)
 library(ggpubr)
 library(tidyverse)
 
 
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/Subset/")
+
 ng <- theme(aspect.ratio=0.7,panel.background = element_blank(), 
             panel.grid.major = element_blank(), 
             panel.grid.minor = element_blank(),
@@ -34,7 +21,7 @@ ng <- theme(aspect.ratio=0.7,panel.background = element_blank(),
             axis.text.y=element_text(size=15))
 
 #snmf
-
+library(LEA)
 # Create geno file
 vcfin <- "Subset.ld.hwe.vcf"
 vcf2lfmm(vcfin)
@@ -53,7 +40,7 @@ obj.snmf = snmf(genoin, K = 1:13, ploidy = 2, entropy = T,
                 alpha = 100, project = "new", repetitions = 10, seed = 42)
 summary(obj.snmf)
 
-obj.snmf1 = load.snmfProject("Subset.ld.hwe.snmfProject")
+obj.snmf1 = load.snmfProject("Subset.ld.hwe.snmfProject") #load back in
 
 K <- summary(obj.snmf1)$crossEntropy %>%
   t() %>%
@@ -62,7 +49,7 @@ K <- summary(obj.snmf1)$crossEntropy %>%
   mutate(K = as.numeric(str_extract(temp, "(\\d)+"))) %>%
   dplyr::select(-temp)
 
-# choose omptimal (K = 3)
+# Identify best value of K (lowest CV score)
 ggplot(K, aes(x = K, y = mean)) +
   geom_line(color = "black", size = 0.25 ) +
   geom_segment(aes(x = K, y = min, xend = K, yend = max)) +
@@ -219,6 +206,11 @@ for (i in site.ordered){
 # Prepare basemap
 #
 # ----------------- #
+library(rworldmap)
+library(rworldxtra)
+library(raster)
+library(maps)
+library(sf)
 
 # Import txt file containing coordinates
 coord = read.delim("Subset_Coord.txt", header = FALSE)

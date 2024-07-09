@@ -1,6 +1,5 @@
-setwd("/Users/ruthrivkin/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/GFAllEnvironments/")
+setwd("~/Dropbox/Postdoc_2021-2024/Polar_Bears/Species_Dist_Modelling/Gradient_Forest/GFAllEnvironments/")
 library(ggplot2)
-library(dplyr)
 library(tidyverse)
 
 ng <- theme(aspect.ratio=0.7,panel.background = element_blank(), 
@@ -101,10 +100,10 @@ datalong$Assigned <- as.factor(datalong$Assigned)
 str(datalong)
 dim(datalong)
 
+
+#Run all rcps in a single model.. didn't use this model in the paper
 library(car)
 library(stats)
-
-#Run all rcps in a single model.. didn't use in the paper
 climate.scenarios.sq.cluster <- glm(sqrt(Offset) ~RCP + location + Assigned  + Population.Size +  Chip + Sample.Year,
                                     family = quasibinomial,
                                     data = datalong)
@@ -163,10 +162,8 @@ meancl <- Rmisc::summarySE(datalong, measurevar = "Offset", groupvars = "Assigne
 meancl
 
 #Assess fit of model (did this for all models, just change the model name)
-library(car)
-
 plot(rcp85.glm)
-hist(data.all$offset.rcp85), xlab = "Response", main = "") #looks okay
+hist((data.all$offset.rcp85), xlab = "Response", main = "") #looks okay
 vif(rcp85.glm) #Less than 10 so no issues
 
 res <- leveneTest(sqrt(Offset) ~ location, data = datalong) #not great but okay
